@@ -1,11 +1,12 @@
-IT Time Tracker
+# **IT Time Tracker**
+
 IT Time Tracker is a sleek, user-friendly Windows Presentation Foundation (WPF) application designed to help IT professionals and teams track their time spent on various tasks and projects.
 No need for complex time tracking software or external services. IT Time Tracker provides a simple, efficient solution for logging and monitoring work hours.
 It was created with the intent to allow IT professionals to easily log their time without the need for complicated setups or internet-dependent services. At its core, the goal is to provide a straightforward, offline-capable time tracking solution.
 IT Time Tracker DOES NOT integrate with any external time tracking or billing systems. It is a standalone application for personal or team use.
 
-[!tip]
-Always back up your data regularly to prevent loss of time tracking information.
+>[!tip]
+>Always back up your data regularly to prevent loss of time tracking information.
 
 Features
 
@@ -16,11 +17,11 @@ Persistent Storage: All entries are automatically saved and loaded between sessi
 Sleek Design: Modern, neon-themed interface with a transparent window for a unique look.
 Minimalistic Controls: Simple submit and reset buttons for easy operation.
 
-How to Use
+## **How to Use**
 Using IT Time Tracker is straightforward and intuitive. This guide assumes you have already installed the application on your Windows machine.
 
-[!Note]
-IT Time Tracker is a standalone application and does not require an internet connection to function.
+>[!Note]
+>IT Time Tracker is a standalone application and does not require an internet connection to function.
 
 Installation:
 
@@ -43,7 +44,7 @@ Weekly
 Monthly
 Year-to-Date (YTD)
 
-Editing Entries
+### **Editing Entries**
 
 Click on any field in the list view to edit an entry.
 Press Enter or click outside the field to save changes.
@@ -61,43 +62,8 @@ Minimizing the Application
 
 Click the minimize button next to the close button to minimize the window.
 
-Development
-IT Time Tracker is developed using C# and WPF. The main components are:
 
-MainWindow.xaml: The main user interface definition.
-MainWindow.xaml.cs: The code-behind file containing the application logic.
-
-Key Classes
-
-Record: Represents a single time entry with properties for Reference, TimeSpent, and Date.
-RelayCommand: Implements the ICommand interface for handling button clicks and other actions.
-
-csharpCopypublic class Record : INotifyPropertyChanged
-{
-    private string _reference;
-    public string Reference
-    {
-        get => _reference;
-        set
-        {
-            if (_reference != value)
-            {
-                _reference = value;
-                OnPropertyChanged(nameof(Reference));
-            }
-        }
-    }
-
-    // Other properties (TimeSpent, Date) follow the same pattern
-
-    public event PropertyChangedEventHandler PropertyChanged;
-
-    protected virtual void OnPropertyChanged(string propertyName)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
-}
-Contributing
+#### **Contributing**
 Contributions to IT Time Tracker are welcome! Please feel free to submit pull requests or create issues for bugs and feature requests.
 License
 IT Time Tracker was created by Kenneth Lasyone ©2024. No license is needed for use.
