@@ -44,6 +44,8 @@ Weekly
 Monthly
 Year-to-Date (YTD)
 
+<br/>
+
 ### **Editing Entries**
 
 Click on any field in the list view to edit an entry.
@@ -62,8 +64,11 @@ Minimizing the Application
 
 Click the minimize button next to the close button to minimize the window.
 
+<br/>
 
 #### **Contributing**
+
+
 Contributions to IT Time Tracker are welcome! Please feel free to submit pull requests or create issues for bugs and feature requests.
 License
 IT Time Tracker was created by Kenneth Lasyone ©2024. No license is needed for use.
