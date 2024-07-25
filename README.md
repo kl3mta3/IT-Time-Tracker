@@ -2,10 +2,9 @@
 
 ![IT Time Tracker](https://github.com/kl3mta3/IT-Time-Tracker/blob/4e596ec37eabd118e9f4755ec4cca90ff9f96ef8/IT%20Time%20Tracker/images/ITTT%20image.png)
 
-IT Time Tracker is a sleek, user-friendly Windows Presentation Foundation (WPF) application designed to help IT professionals and teams track their time spent on various tasks and projects.
-No need for complex time tracking software or external services. IT Time Tracker provides a simple, efficient solution for logging and monitoring work hours.
-It was created with the intent to allow IT professionals to easily log their time without the need for complicated setups or internet-dependent services. At its core, the goal is to provide a straightforward, offline-capable time tracking solution.
-IT Time Tracker DOES NOT integrate with any external time tracking or billing systems. It is a standalone application for personal or team use.
+IT Time Tracker is designed to help IT professionals and teams track their time spent on various tasks and projects.IT Time Tracker provides a simple, efficient solution for logging and monitoring work hours.
+At its core, the goal is to provide a straightforward, offline-capable time tracking solution.
+IT Time Tracker DOES NOT integrate with any external time tracking or billing systems. It is a standalone appication for personal or team use.
 
 >[!tip]
 >Always back up your data regularly to prevent loss of time tracking information.
