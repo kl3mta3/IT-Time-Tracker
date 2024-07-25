@@ -310,9 +310,23 @@ namespace IT_Time_Tracker
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Application.Current.Shutdown();
         }
 
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            var focusedElement = FocusManager.GetFocusedElement(this);
+            if (focusedElement is TextBox textBox)
+            {
+                
+                textBox.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+            }
+        }
+
+        private void btn_Minimize_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
         private void DeleteEntry_Click(object sender, RoutedEventArgs e)
         {
             var menuItem = sender as MenuItem;
@@ -337,19 +351,10 @@ namespace IT_Time_Tracker
             }
         }
 
-        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            var focusedElement = FocusManager.GetFocusedElement(this);
-            if (focusedElement is TextBox textBox)
-            {
-                
-                textBox.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
-            }
-        }
 
-        private void btn_Minimize_Click(object sender, RoutedEventArgs e)
+        private void ReportButton_Click(object sender, RoutedEventArgs e)
         {
-            this.WindowState = WindowState.Minimized;
+
         }
     }
 

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:IT_Time_Tracker"
         mc:Ignorable="d"
         Title="It Time Tracker" Height="472" Width="377" ResizeMode="CanMinimize" Opacity="0.94" AllowsTransparency="True"  WindowStyle="None" Background="{x:Null}" Foreground="{x:Null}" MouseDown="Window_MouseDown">
-    <Border CornerRadius="20" BorderThickness="1" BorderBrush="Black">
+    <Border CornerRadius="20" BorderThickness=".5" BorderBrush="Black">
         <Border.Background>
             <ImageBrush ImageSource="/neon_Mountain_desktop_8k.png"/>
         </Border.Background>
@@ -15,11 +15,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Rectangle x:Name="bg_MainBG" HorizontalAlignment="Center" Height="450" VerticalAlignment="Center" Width="377">
-                <Rectangle.Fill>
-                    <ImageBrush ImageSource="/neon_Mountain_desktop_8k.png"/>
-                </Rectangle.Fill>
-            </Rectangle>
+
 
             <Rectangle x:Name="bg_BlackMain" HorizontalAlignment="Center" Height="450" Stroke="Black" VerticalAlignment="Center" Width="355" Fill="#D8000000"/>
             <Rectangle x:Name="bg_ListView" HorizontalAlignment="Left" Height="184" Margin="23,238,0,0" Stroke="Black" VerticalAlignment="Top" Width="310" Opacity="0.535">
@@ -225,6 +221,11 @@
             </Button>
             <Label x:Name="lbl_totals_Title_Copy1" Content="*Deletion coming for now make time 0 ." HorizontalAlignment="Left" Margin="-11,427,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="245" FontWeight="Bold" Background="{x:Null}" Foreground="White" FontSize="9"/>
             <Label x:Name="lbl_totals_Title_Copy2" Content="ItTimeTracker is a Maple Product" HorizontalAlignment="Left" Margin="114,451,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="128" FontWeight="Bold" Background="{x:Null}" Foreground="White" FontSize="7"/>
+            <Button x:Name="btn_Report" Content="Create Report" Margin="281,227,0,225" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.109,-0.074" BorderBrush="{x:Null}" Click="ReportButton_Click" FontSize="10" Padding="1,0,1,1" HorizontalAlignment="Left" Width="68">
+                <Button.Background>
+                    <ImageBrush ImageSource="/OvalButtonLG_UI.png"/>
+                </Button.Background>
+            </Button>
 
         </Grid>
     </Border>
