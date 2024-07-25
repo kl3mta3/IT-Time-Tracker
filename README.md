@@ -1,6 +1,6 @@
 # **IT Time Tracker**
 
-![IT Time Tracker](https://github.com/kl3mta3/IT-Time-Tracker/blob/4e596ec37eabd118e9f4755ec4cca90ff9f96ef8/IT%20Time%20Tracker/images/ITTT%20image.png)
+![IT Time Tracker](https://github.com/kl3mta3/IT-Time-Tracker/blob/43a018c137347a4c981134d3d56a30201bb7c1ed/IT%20Time%20Tracker/images/mainui.png)
 
 IT Time Tracker is designed to help IT professionals and teams track their time spent on various tasks and projects.IT Time Tracker provides a simple, efficient solution for logging and monitoring work hours.
 At its core, the goal is to provide a straightforward, offline-capable time tracking solution.
