@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IT_Time_Tracker"
         mc:Ignorable="d"
-        Title="Reports" Height="472" Width="377" ResizeMode="CanMinimize" Opacity="0.94" AllowsTransparency="True"  WindowStyle="None" Background="{x:Null}" Foreground="{x:Null}" MouseDown="Window_MouseDown">
+        Title="Reports" Height="472" Width="377" ResizeMode="CanMinimize" Opacity="0.94" AllowsTransparency="True"  WindowStyle="None" Background="{x:Null}" Foreground="{x:Null}">
     <Border CornerRadius="20" BorderThickness="1" BorderBrush="Black">
         <Border.Background>
             <ImageBrush ImageSource="/neon_Mountain_desktop_8k.png"/>
@@ -25,6 +25,45 @@
             </Button>
             <Rectangle x:Name="DragRegion" Fill="Transparent" 
                 VerticalAlignment="Top" Height="47" MouseLeftButtonDown="DragRegion_MouseLeftButtonDown" Margin="0,0,71,0"/>
+            <Label x:Name="lbl_Reports" Content="Time Reports" HorizontalAlignment="Left" Margin="104,10,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="170" FontWeight="Bold" FontSize="20" Background="{x:Null}" Foreground="White"/>
+            <RadioButton x:Name="rbt_RefSearch" Content="" HorizontalAlignment="Left" Margin="104,102,0,0" VerticalAlignment="Top" Width="15" Foreground="{x:Null}" GroupName="Search" IsChecked="True"/>
+            <RadioButton x:Name="rbt_DateSearch" Content="" HorizontalAlignment="Left" Margin="259,102,0,0" VerticalAlignment="Top" Width="15" Foreground="{x:Null}" GroupName="Search"/>
+            <Label x:Name="lbl_SearchRef_Title" Content="Search by Reference" HorizontalAlignment="Left" Margin="48,72,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="126" FontWeight="Bold" FontSize="11" Background="{x:Null}" Foreground="White"/>
+            <Label x:Name="lbl_SerchDate_Title_Copy" Content="Search by Date Range" HorizontalAlignment="Left" Margin="204,72,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="126" FontWeight="Bold" FontSize="11" Background="{x:Null}" Foreground="White"/>
+            <Rectangle HorizontalAlignment="Center" Height="209" Margin="0,208,0,0" Stroke="Black" VerticalAlignment="Top" Width="324" Opacity="0.43">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/neon_beach_desktop_8k_paper4.png"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <ListView x:Name="lvw_SearchResults" ItemsSource="{Binding filteredRecords}"  Margin="25,208,26,35" Foreground="White" BorderBrush="White" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                <ListView.Background>
+                    <ImageBrush/>
+                </ListView.Background>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Reference" DisplayMemberBinding="{Binding Reference}" Width="100"/>
+                        <GridViewColumn Header="Time Spent" DisplayMemberBinding="{Binding TimeSpent}" Width="100"/>
+                        <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Date}" Width="100"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <TextBox x:Name="txb_SearchRef" HorizontalAlignment="Left" Margin="67,122,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" RenderTransformOrigin="0.208,-0.668"/>
+            <TextBox x:Name="txb_SearchDateTo" HorizontalAlignment="Left" Margin="222,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" RenderTransformOrigin="0.208,-0.668"/>
+            <TextBox x:Name="txb_SearchDateFrom" HorizontalAlignment="Left" Margin="222,122,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" RenderTransformOrigin="0.208,-0.668"/>
+            <Label x:Name="lbl_SerchDateTo_Title_Copy1" Content="To:" HorizontalAlignment="Left" Margin="187,150,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="30" FontWeight="Bold" FontSize="11" Background="{x:Null}" Foreground="White"/>
+            <Label x:Name="lbl_SerchDateFrom_Title_Copy" Content="From:" HorizontalAlignment="Left" Margin="174,120,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="43" FontWeight="Bold" FontSize="11" Background="{x:Null}" Foreground="White"/>
+            <Button x:Name="btn_Search" Content="Search" HorizontalAlignment="Center" Margin="0,182,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.109,-0.074" Height="21" Width="54" BorderBrush="{x:Null}" Click="SearchButton_Click" FontWeight="Bold" Foreground="Black">
+                <Button.Background>
+                    <ImageBrush ImageSource="/OvalButtonLG_UI.png"/>
+                </Button.Background>
+            </Button>
+            <Button x:Name="btn_Save" Content="Save Report" Margin="267,425,26,6" RenderTransformOrigin="0.109,-0.074" BorderBrush="{x:Null}" Click="SaveButton_Click" FontWeight="Bold" Foreground="Black">
+                <Button.Background>
+                    <ImageBrush ImageSource="/OvalButtonLG_UI.png"/>
+                </Button.Background>
+            </Button>
+
+
         </Grid>
     </Border>
 </Window>

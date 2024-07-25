@@ -354,7 +354,9 @@ namespace IT_Time_Tracker
 
         private void ReportButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Reports reportsWindow = new Reports(Records);
+            reportsWindow.Owner = this; 
+            reportsWindow.ShowDialog();
         }
     }
 

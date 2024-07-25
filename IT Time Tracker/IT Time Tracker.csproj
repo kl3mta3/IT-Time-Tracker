@@ -11,6 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="neon_beach_desktop_8k_paper4.png" />
     <None Remove="neon_beach_desktop_8k_paper9.png" />
     <None Remove="neon_Mountain_desktop_8k.png" />
     <None Remove="OvalButtonLG_UI.png" />
@@ -23,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="neon_beach_desktop_8k_paper4.png" />
     <Resource Include="neon_beach_desktop_8k_paper9.png" />
     <Resource Include="neon_Mountain_desktop_8k.png" />
     <Resource Include="OvalButtonLG_UI.png" />
