@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <RootNamespace>ITSC_Time_Tracker</RootNamespace>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>time_tracker_icon.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="neon_beach_desktop_8k_paper9.png" />
+    <None Remove="neon_Mountain_desktop_8k.png" />
+    <None Remove="OvalButtonLG_UI.png" />
+    <None Remove="RoundButton_UI.png" />
+    <None Remove="SendButton_UI.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="time_tracker_icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="neon_beach_desktop_8k_paper9.png" />
+    <Resource Include="neon_Mountain_desktop_8k.png" />
+    <Resource Include="OvalButtonLG_UI.png" />
+    <Resource Include="RoundButton_UI.png" />
+    <Resource Include="SendButton_UI.png" />
+  </ItemGroup>
+
+</Project>
