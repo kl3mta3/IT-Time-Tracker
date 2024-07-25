@@ -57,6 +57,10 @@ Resetting the Application
 
 Click the "Reset" button at the bottom right to clear all entries and totals.
 
+Deleting a Record.
+
+Right click on the record and click "Delete Entry".
+
 Closing the Application
 
 Click the "X" button in the top right corner to close the application.
@@ -67,7 +71,15 @@ Click the minimize button next to the close button to minimize the window.
 
 <br/>
 
-#### **Contributing**
+### **Reports**
+
+Reports can be generated from a date range or from a reference number. 
+To access and creat a report click "Create Report" 
+Chose a Date Rage or enter your Reference numeber and click search.
+You can save the generated report as a txt file by clicking "Save Report" and choosing the save location.
+
+
+##### **Contributing**
 
 
 Contributions to IT Time Tracker are welcome! Please feel free to submit pull requests or create issues for bugs and feature requests.
