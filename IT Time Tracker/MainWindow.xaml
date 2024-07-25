@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IT_Time_Tracker"
         mc:Ignorable="d"
-        Title="It Time Tracker" Height="472" Width="377" ResizeMode="CanMinimize" Opacity="0.94" AllowsTransparency="True"  WindowStyle="None" Background="{x:Null}" Foreground="{x:Null}" MouseDown="Window_MouseDown">
+        Title="It Time Tracker" Height="472" Width="377" ResizeMode="CanMinimize" Opacity="1" AllowsTransparency="True"  WindowStyle="None" Background="{x:Null}" Foreground="{x:Null}" MouseDown="Window_MouseDown">
     <Border CornerRadius="20" BorderThickness=".5" BorderBrush="Black">
         <Border.Background>
             <ImageBrush ImageSource="/neon_Mountain_desktop_8k.png"/>
@@ -28,15 +28,13 @@
           FontWeight="Bold" Opacity="1" Foreground="White" BorderBrush="White" 
           Background="{x:Null}" ItemsSource="{Binding Records}" 
           ScrollViewer.VerticalScrollBarVisibility="Visible">
+                <ListView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Delete Entry" Click="DeleteEntry_Click"/>
+                    </ContextMenu>
+                </ListView.ContextMenu>
                 <ListView.ItemContainerStyle>
                     <Style TargetType="{x:Type ListViewItem}">
-                        <!--<Setter Property="ContextMenu">
-                            <Setter.Value>
-                                <ContextMenu DataContext="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource Self}}">
-                                    <MenuItem Header="Delete Entry" Command="{Binding DataContext.DeleteEntryCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}"/>
-                                </ContextMenu>
-                            </Setter.Value>
-                        </Setter>-->
                         <Style.Triggers>
                             <Trigger Property="IsSelected" Value="True">
                                 <Setter Property="Foreground" Value="Black"/>
@@ -219,8 +217,7 @@
                     <ImageBrush ImageSource="/OvalButtonLG_UI.png"/>
                 </Button.Background>
             </Button>
-            <Label x:Name="lbl_totals_Title_Copy1" Content="*Deletion coming for now make time 0 ." HorizontalAlignment="Left" Margin="-11,427,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="245" FontWeight="Bold" Background="{x:Null}" Foreground="White" FontSize="9"/>
-            <Label x:Name="lbl_totals_Title_Copy2" Content="ItTimeTracker is a Maple Product" HorizontalAlignment="Left" Margin="114,451,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="128" FontWeight="Bold" Background="{x:Null}" Foreground="White" FontSize="7"/>
+            <Label x:Name="lbl_totals_Title_Copy2" Content="ItTimeTracker is a Maple Product" HorizontalAlignment="Left" Margin="114,439,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="128" FontWeight="Bold" Background="{x:Null}" Foreground="White" FontSize="7"/>
             <Button x:Name="btn_Report" Content="Create Report" Margin="281,227,0,225" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.109,-0.074" BorderBrush="{x:Null}" Click="ReportButton_Click" FontSize="10" Padding="1,0,1,1" HorizontalAlignment="Left" Width="68">
                 <Button.Background>
                     <ImageBrush ImageSource="/OvalButtonLG_UI.png"/>

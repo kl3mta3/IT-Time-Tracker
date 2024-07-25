@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IT_Time_Tracker"
         mc:Ignorable="d"
-        Title="Reports" Height="472" Width="377" ResizeMode="CanMinimize" Opacity="0.94" AllowsTransparency="True"  WindowStyle="None" Background="{x:Null}" Foreground="{x:Null}">
+        Title="Reports" Height="472" Width="377" ResizeMode="CanMinimize" Opacity="1" AllowsTransparency="True"  WindowStyle="None" Background="{x:Null}" Foreground="{x:Null}">
     <Border CornerRadius="20" BorderThickness="1" BorderBrush="Black">
         <Border.Background>
             <ImageBrush ImageSource="/neon_Mountain_desktop_8k.png"/>
@@ -23,8 +23,6 @@
                     <ImageBrush ImageSource="/OvalButtonLG_UI.png"/>
                 </Button.Background>
             </Button>
-            <Rectangle x:Name="DragRegion" Fill="Transparent" 
-                VerticalAlignment="Top" Height="47" MouseLeftButtonDown="DragRegion_MouseLeftButtonDown" Margin="0,0,71,0"/>
             <Label x:Name="lbl_Reports" Content="Time Reports" HorizontalAlignment="Left" Margin="104,10,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="170" FontWeight="Bold" FontSize="20" Background="{x:Null}" Foreground="White"/>
             <RadioButton x:Name="rbt_RefSearch" Content="" HorizontalAlignment="Left" Margin="104,102,0,0" VerticalAlignment="Top" Width="15" Foreground="{x:Null}" GroupName="Search" IsChecked="True"/>
             <RadioButton x:Name="rbt_DateSearch" Content="" HorizontalAlignment="Left" Margin="259,102,0,0" VerticalAlignment="Top" Width="15" Foreground="{x:Null}" GroupName="Search"/>
@@ -35,10 +33,19 @@
                     <ImageBrush ImageSource="/neon_beach_desktop_8k_paper4.png"/>
                 </Rectangle.Fill>
             </Rectangle>
-            <ListView x:Name="lvw_SearchResults" ItemsSource="{Binding filteredRecords}"  Margin="25,208,26,35" Foreground="White" BorderBrush="White" ScrollViewer.VerticalScrollBarVisibility="Visible">
+            <ListView x:Name="lvw_SearchResults" ItemsSource="{Binding filteredRecords}" 
+          Margin="25,208,26,35" Foreground="White" BorderBrush="White" 
+          ScrollViewer.VerticalScrollBarVisibility="Visible"
+          IsHitTestVisible="False">
                 <ListView.Background>
                     <ImageBrush/>
                 </ListView.Background>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListViewItem}">
+                        <Setter Property="Focusable" Value="False"/>
+                        <Setter Property="Foreground" Value="White"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Reference" DisplayMemberBinding="{Binding Reference}" Width="100"/>
@@ -52,6 +59,8 @@
             <TextBox x:Name="txb_SearchDateFrom" HorizontalAlignment="Left" Margin="222,122,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" RenderTransformOrigin="0.208,-0.668"/>
             <Label x:Name="lbl_SerchDateTo_Title_Copy1" Content="To:" HorizontalAlignment="Left" Margin="187,150,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="30" FontWeight="Bold" FontSize="11" Background="{x:Null}" Foreground="White"/>
             <Label x:Name="lbl_SerchDateFrom_Title_Copy" Content="From:" HorizontalAlignment="Left" Margin="174,120,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="43" FontWeight="Bold" FontSize="11" Background="{x:Null}" Foreground="White"/>
+            <Rectangle x:Name="DragRegion" Fill="Transparent" 
+                VerticalAlignment="Top" Height="47" MouseLeftButtonDown="DragRegion_MouseLeftButtonDown" Margin="0,0,71,0"/>
             <Button x:Name="btn_Search" Content="Search" HorizontalAlignment="Center" Margin="0,182,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.109,-0.074" Height="21" Width="54" BorderBrush="{x:Null}" Click="SearchButton_Click" FontWeight="Bold" Foreground="Black">
                 <Button.Background>
                     <ImageBrush ImageSource="/OvalButtonLG_UI.png"/>

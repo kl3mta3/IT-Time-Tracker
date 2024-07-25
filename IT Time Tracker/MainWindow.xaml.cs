@@ -33,9 +33,9 @@ namespace IT_Time_Tracker
         {
             InitializeComponent();
             DeleteEntryCommand = new RelayCommand<Record>(DeleteEntry);
+            Records = new ObservableCollection<Record>();
             DataContext = this;
 
-            Records = new ObservableCollection<Record>();
 
             
             string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
@@ -327,27 +327,36 @@ namespace IT_Time_Tracker
         {
             this.WindowState = WindowState.Minimized;
         }
+
         private void DeleteEntry_Click(object sender, RoutedEventArgs e)
         {
-            var menuItem = sender as MenuItem;
-            var contextMenu = menuItem.Parent as ContextMenu;
-            var listViewItem = contextMenu.PlacementTarget as ListViewItem;
-            var record = listViewItem.Content as Record;
-
-            if (record != null)
+            try
             {
+                // Get the selected item directly from the ListView
+                var selectedItem = lvw_History.SelectedItem as Record;
+
+                if (selectedItem == null)
+                {
+                    MessageBox.Show("No item selected. Please select an item to delete.", "No Selection", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
+                }
+
                 MessageBoxResult result = MessageBox.Show(
-                    "Are you sure you want to delete this entry?",
+                    $"Are you sure you want to delete the entry with Reference: {selectedItem.Reference}?",
                     "Confirm Deletion",
                     MessageBoxButton.YesNo,
                     MessageBoxImage.Warning);
 
                 if (result == MessageBoxResult.Yes)
                 {
-                    Records.Remove(record);
+                    Records.Remove(selectedItem);
                     SaveChanges();
-                    UpdateTotals();
+                    MessageBox.Show("Entry deleted successfully.", "Deletion Confirmed", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}\n\nStack Trace: {ex.StackTrace}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
