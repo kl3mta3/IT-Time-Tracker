@@ -4,7 +4,7 @@
 
 IT Time Tracker is designed to help IT professionals and teams track their time spent on various tasks and projects.IT Time Tracker provides a simple, efficient solution for logging and monitoring work hours.
 At its core, the goal is to provide a straightforward, offline-capable time tracking solution.
-IT Time Tracker DOES NOT integrate with any external time tracking or billing systems. It is a standalone appication for personal or team use.
+IT Time Tracker DOES NOT integrate with any external time tracking or billing systems. It is a standalone application for personal or team use.
 
 >[!tip]
 >Always back up your data regularly to prevent loss of time tracking information.
