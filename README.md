@@ -72,7 +72,7 @@ Click the minimize button next to the close button to minimize the window.
 <br/>
 
 ### **Reports**
-
+![Reports ](https://github.com/kl3mta3/IT-Time-Tracker/blob/8b43709e75e40162a173865d59a456c6e4bf9ecf/IT%20Time%20Tracker/images/reportsui.png)
 Reports can be generated from a date range or from a reference number. 
 To access and creat a report click "Create Report" 
 Chose a Date Rage or enter your Reference numeber and click search.
