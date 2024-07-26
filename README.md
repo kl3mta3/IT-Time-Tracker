@@ -1,10 +1,10 @@
 # **IT Time Tracker**
 
-![IT Time Tracker](https://github.com/kl3mta3/IT-Time-Tracker/blob/4e596ec37eabd118e9f4755ec4cca90ff9f96ef8/IT%20Time%20Tracker/images/ITTT%20image.png)
+![IT Time Tracker](https://github.com/kl3mta3/IT-Time-Tracker/blob/43a018c137347a4c981134d3d56a30201bb7c1ed/IT%20Time%20Tracker/images/mainui.png)
 
 IT Time Tracker is designed to help IT professionals and teams track their time spent on various tasks and projects.IT Time Tracker provides a simple, efficient solution for logging and monitoring work hours.
 At its core, the goal is to provide a straightforward, offline-capable time tracking solution.
-IT Time Tracker DOES NOT integrate with any external time tracking or billing systems. It is a standalone appication for personal or team use.
+IT Time Tracker DOES NOT integrate with any external time tracking or billing systems. It is a standalone application for personal or team use.
 
 >[!tip]
 >Always back up your data regularly to prevent loss of time tracking information.
@@ -57,6 +57,10 @@ Resetting the Application
 
 Click the "Reset" button at the bottom right to clear all entries and totals.
 
+Deleting a Record.
+
+Right click on the record and click "Delete Entry".
+
 Closing the Application
 
 Click the "X" button in the top right corner to close the application.
@@ -67,7 +71,18 @@ Click the minimize button next to the close button to minimize the window.
 
 <br/>
 
-#### **Contributing**
+### **Reports**
+
+![Reports ](https://github.com/kl3mta3/IT-Time-Tracker/blob/8b43709e75e40162a173865d59a456c6e4bf9ecf/IT%20Time%20Tracker/images/reportsui.png)
+
+Reports can be generated from a date range or from a reference number. 
+To access and create a report click "Create Report" 
+Chose a Date Rage or enter your Reference numeber and click search.
+You can save the generated report as a txt file by clicking "Save Report" and choosing the save location.
+
+<br/>
+
+##### **Contributing**
 
 
 Contributions to IT Time Tracker are welcome! Please feel free to submit pull requests or create issues for bugs and feature requests.
