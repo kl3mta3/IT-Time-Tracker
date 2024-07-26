@@ -78,8 +78,8 @@ namespace IT_Time_Tracker
 
         private void SearchByReference()
         {
-            string searchRef = txb_SearchRef.Text.Trim().ToLower();
-            var results = allRecords.Where(r => r.Reference.ToLower().Contains(searchRef));
+            int searchRef = int.Parse(txb_SearchRef.Text);
+            var results = allRecords.Where(r => r.Reference == searchRef);
             filteredRecords.Clear();  
             foreach (var record in results)
             {
@@ -109,10 +109,19 @@ namespace IT_Time_Tracker
 
         private string CalculateTotalTimeSpent(ObservableCollection<Record> records)
         {
-            double totalMinutes = records.Sum(r => double.Parse(r.TimeSpent));
-            int hours = (int)totalMinutes / 60;
-            int minutes = (int)totalMinutes % 60;
+            int totalMinutes = records.Sum(r => r.TimeSpent);
+            int hours = totalMinutes / 60;
+            int minutes = totalMinutes % 60;
             return $"{hours}h {minutes}m";
+        }
+
+        private int ParseTimeSpent(string timeSpent)
+        {
+            if (int.TryParse(timeSpent, out int result))
+            {
+                return result;
+            }
+            return 0; // Return 0 if parsing fails
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
@@ -165,5 +174,12 @@ namespace IT_Time_Tracker
                 }
             }
         }
+
+
+
+
+
+
+
     }
 }

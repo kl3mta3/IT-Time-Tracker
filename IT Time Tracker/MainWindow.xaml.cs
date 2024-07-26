@@ -14,13 +14,12 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-
 namespace IT_Time_Tracker
 {
-  /// <summary>
-  /// It Time Tracker was created by Kenneth Lasyone ©2024
-  /// No license needed for use.
-  /// </summary>
+    /// <summary>
+    /// It Time Tracker was created by Kenneth Lasyone ©2024
+    /// No license needed for use.
+    /// </summary>
     public partial class MainWindow : Window
     {
         public ObservableCollection<Record> Records { get; set; }
@@ -29,6 +28,9 @@ namespace IT_Time_Tracker
         private bool _isEditing = false;
         private string _originalValue = string.Empty;
 
+        private string _lastSortColumn;
+        private ListSortDirection _lastSortDirection = ListSortDirection.Ascending;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -36,18 +38,13 @@ namespace IT_Time_Tracker
             Records = new ObservableCollection<Record>();
             DataContext = this;
 
-
-            
             string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             string appFolder = System.IO.Path.Combine(appDataPath, "ITTimeTracker");
-            Directory.CreateDirectory(appFolder); 
+            Directory.CreateDirectory(appFolder);
             JsonFilePath = System.IO.Path.Combine(appFolder, "records.json");
 
             LoadRecordsFromJson();
             DataContext = this;
-
-
-
         }
 
         private void DeleteEntry(Record record)
@@ -64,7 +61,7 @@ namespace IT_Time_Tracker
                 {
                     Records.Remove(record);
                     SaveChanges();
-                    
+
                     MessageBox.Show("Entry deleted successfully.", "Deletion Confirmed", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
@@ -73,7 +70,6 @@ namespace IT_Time_Tracker
                 MessageBox.Show("No record selected for deletion.", "Deletion Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
 
         private void LoadRecordsFromJson()
         {
@@ -85,6 +81,7 @@ namespace IT_Time_Tracker
                 UpdateTotals();
             }
         }
+
         private void SaveRecordsToJson()
         {
             string jsonString = JsonSerializer.Serialize(Records, new JsonSerializerOptions { WriteIndented = true });
@@ -93,12 +90,21 @@ namespace IT_Time_Tracker
 
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
-            string reference = txb_ReferenceNumberInput.Text;
-            string timeSpent = txb_TimeInput.Text;
-
-            if (string.IsNullOrWhiteSpace(reference) || string.IsNullOrWhiteSpace(timeSpent))
+            if (!int.TryParse(txb_ReferenceNumberInput.Text, out int reference))
             {
-                MessageBox.Show("Please enter both Reference Number and Time Spent.");
+                MessageBox.Show("Please enter a valid integer for Reference Number.");
+                return;
+            }
+
+            if (!int.TryParse(txb_TimeInput.Text, out int timeSpent))
+            {
+                MessageBox.Show("Please enter a valid integer for Time Spent.");
+                return;
+            }
+
+            if (reference <= 0 || timeSpent <= 0)
+            {
+                MessageBox.Show("Please enter both a positive integer for Reference Number and Time Spent.");
                 return;
             }
 
@@ -115,20 +121,16 @@ namespace IT_Time_Tracker
 
             lvw_History.Items.Refresh();
 
-
             txb_ReferenceNumberInput.Clear();
             txb_TimeInput.Clear();
         }
 
         private void SaveChanges()
         {
-            
             SaveRecordsToJson();
             lvw_History.Items.Refresh();
             UpdateTotals();
-
         }
-
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -150,7 +152,6 @@ namespace IT_Time_Tracker
             }
             else if (e.Key == Key.Escape)
             {
-                
                 textBox.Text = _originalValue;
                 _isEditing = false;
                 textBox.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
@@ -172,24 +173,56 @@ namespace IT_Time_Tracker
                 string fieldName = textBox.Tag as string;
                 string newValue = textBox.Text;
 
-                if (newValue != _originalValue)
+                if (fieldName == "TimeSpent")
                 {
-                    MessageBoxResult result = MessageBox.Show(
-                        $"Do you want to change the {fieldName} from '{_originalValue}' to '{newValue}'?",
-                        "Confirm Edit",
-                        MessageBoxButton.YesNo,
-                        MessageBoxImage.Question);
-
-                    if (result == MessageBoxResult.Yes)
+                    if (int.TryParse(newValue, out int newIntValue) && int.TryParse(_originalValue, out int originalIntValue))
                     {
-                        ApplyChange(record, fieldName, newValue);
-                        SaveChanges();
-                        UpdateTotals();
+                        if (newIntValue != originalIntValue)
+                        {
+                            MessageBoxResult result = MessageBox.Show(
+                                $"Do you want to change the {fieldName} from '{_originalValue}' to '{newValue}'?",
+                                "Confirm Edit",
+                                MessageBoxButton.YesNo,
+                                MessageBoxImage.Question);
+
+                            if (result == MessageBoxResult.Yes)
+                            {
+                                ApplyChange(record, fieldName, newIntValue);
+                                SaveChanges();
+                                UpdateTotals();
+                            }
+                            else
+                            {
+                                textBox.Text = _originalValue;
+                            }
+                        }
                     }
                     else
                     {
-                        
-                        textBox.Text = _originalValue;
+                        MessageBox.Show("Please enter a valid integer for Time Spent.");
+                        textBox.Text = record.TimeSpent.ToString();
+                    }
+                }
+                else
+                {
+                    // Handle other fields (Reference and Date)
+                    if (newValue != _originalValue)
+                    {
+                        MessageBoxResult result = MessageBox.Show(
+                            $"Do you want to change the {fieldName} from '{_originalValue}' to '{newValue}'?",
+                            "Confirm Edit",
+                            MessageBoxButton.YesNo,
+                            MessageBoxImage.Question);
+
+                        if (result == MessageBoxResult.Yes)
+                        {
+                            ApplyChange(record, fieldName, newValue);
+                            SaveChanges();
+                        }
+                        else
+                        {
+                            textBox.Text = _originalValue;
+                        }
                     }
                 }
 
@@ -203,9 +236,9 @@ namespace IT_Time_Tracker
             switch (fieldName)
             {
                 case "Reference":
-                    return record.Reference;
+                    return record.Reference.ToString();
                 case "TimeSpent":
-                    return record.TimeSpent;
+                    return record.TimeSpent.ToString();
                 case "Date":
                     return record.Date;
                 default:
@@ -213,21 +246,21 @@ namespace IT_Time_Tracker
             }
         }
 
-        private void ApplyChange(Record record, string fieldName, string newValue)
+        private void ApplyChange(Record record, string fieldName, object newValue)
+        {
+            switch (fieldName)
             {
-                switch (fieldName)
-                {
-                    case "Reference":
-                        record.Reference = newValue;
-                        break;
-                    case "TimeSpent":
-                        record.TimeSpent = newValue;
-                        break;
-                    case "Date":
-                        record.Date = newValue;
-                        break;
-                }
+                case "Reference":
+                    record.Reference = (int)newValue;
+                    break;
+                case "TimeSpent":
+                    record.TimeSpent = (int)newValue;
+                    break;
+                case "Date":
+                    record.Date = newValue as string;
+                    break;
             }
+        }
 
         private void UpdateTotals()
         {
@@ -237,13 +270,13 @@ namespace IT_Time_Tracker
             var startOfYear = new DateTime(today.Year, 1, 1);
 
             var dailyTotal = Records.Where(r => DateTime.Parse(r.Date) == today)
-                                    .Sum(r => ParseTimeSpent(r.TimeSpent));
+                                    .Sum(r => r.TimeSpent);
             var weeklyTotal = Records.Where(r => DateTime.Parse(r.Date) >= startOfWeek)
-                                     .Sum(r => ParseTimeSpent(r.TimeSpent));
+                                     .Sum(r => r.TimeSpent);
             var monthlyTotal = Records.Where(r => DateTime.Parse(r.Date) >= startOfMonth)
-                                      .Sum(r => ParseTimeSpent(r.TimeSpent));
+                                      .Sum(r => r.TimeSpent);
             var ytdTotal = Records.Where(r => DateTime.Parse(r.Date) >= startOfYear)
-                                  .Sum(r => ParseTimeSpent(r.TimeSpent));
+                                  .Sum(r => r.TimeSpent);
 
             lbl_Daily_Total.Content = FormatTotalTime(dailyTotal);
             lbl_Weekly_Total.Content = FormatTotalTime(weeklyTotal);
@@ -253,17 +286,15 @@ namespace IT_Time_Tracker
 
         private double ParseTimeSpent(string timeSpent)
         {
-            
             return double.TryParse(timeSpent, out double result) ? result : 0;
         }
 
-        private string FormatTotalTime(double totalMinutes)
+        private string FormatTotalTime(int totalMinutes)
         {
-            var hours = Math.Floor(totalMinutes / 60);
+            var hours = Math.Floor(totalMinutes / 60.0);
             var minutes = totalMinutes % 60;
             return $"{hours:F0}h {minutes:F0}m";
         }
-
 
         private void ResetButton_Click(object sender, RoutedEventArgs e)
         {
@@ -281,23 +312,18 @@ namespace IT_Time_Tracker
 
         private void ResetApplication()
         {
-            
             Records.Clear();
 
-           
             lbl_Daily_Total.Content = "0h 0m";
             lbl_Weekly_Total.Content = "0h 0m";
             lbl_Monthly_Total.Content = "0h 0m";
             lbl_YTD_Total.Content = "0h 0m";
 
-            
             File.WriteAllText(JsonFilePath, "[]");
 
-            
             if (txb_ReferenceNumberInput != null) txb_ReferenceNumberInput.Text = string.Empty;
             if (txb_TimeInput != null) txb_TimeInput.Text = string.Empty;
 
-            
             lvw_History.Items.Refresh();
 
             MessageBox.Show("Application has been reset successfully.", "Reset Complete", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -318,7 +344,6 @@ namespace IT_Time_Tracker
             var focusedElement = FocusManager.GetFocusedElement(this);
             if (focusedElement is TextBox textBox)
             {
-                
                 textBox.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
             }
         }
@@ -332,7 +357,6 @@ namespace IT_Time_Tracker
         {
             try
             {
-                // Get the selected item directly from the ListView
                 var selectedItem = lvw_History.SelectedItem as Record;
 
                 if (selectedItem == null)
@@ -360,15 +384,56 @@ namespace IT_Time_Tracker
             }
         }
 
-
         private void ReportButton_Click(object sender, RoutedEventArgs e)
         {
             Reports reportsWindow = new Reports(Records);
-            reportsWindow.Owner = this; 
+            reportsWindow.Owner = this;
             reportsWindow.ShowDialog();
         }
-    }
 
+        private void Sort(string sortBy, ListSortDirection direction)
+        {
+            ICollectionView dataView = CollectionViewSource.GetDefaultView(lvw_History.ItemsSource);
+
+            dataView.SortDescriptions.Clear();
+            SortDescription sd = new SortDescription(sortBy, direction);
+            dataView.SortDescriptions.Add(sd);
+            dataView.Refresh();
+        }
+
+        private void GridViewColumnHeader_Click(object sender, RoutedEventArgs e)
+        {
+            var headerClicked = e.OriginalSource as GridViewColumnHeader;
+            if (headerClicked != null)
+            {
+                string column = headerClicked.Tag as string;
+
+                if (_lastSortColumn == column)
+                {
+                    _lastSortDirection = _lastSortDirection == ListSortDirection.Ascending ?
+                        ListSortDirection.Descending : ListSortDirection.Ascending;
+                }
+                else
+                {
+                    _lastSortDirection = ListSortDirection.Ascending;
+                }
+
+                _lastSortColumn = column;
+
+                SortRecords(column, _lastSortDirection);
+            }
+        }
+
+        private void SortRecords(string column, ListSortDirection direction)
+        {
+            ICollectionView dataView = CollectionViewSource.GetDefaultView(Records);
+
+            dataView.SortDescriptions.Clear();
+            SortDescription sd = new SortDescription(column, direction);
+            dataView.SortDescriptions.Add(sd);
+            dataView.Refresh();
+        }
+    }
 
     public class RelayCommand<T> : ICommand
     {
@@ -390,12 +455,10 @@ namespace IT_Time_Tracker
         }
     }
 
-
     public class Record : INotifyPropertyChanged
     {
-        private string _reference;
-
-        public string Reference
+        private int _reference;
+        public int Reference
         {
             get => _reference;
             set
@@ -408,10 +471,8 @@ namespace IT_Time_Tracker
             }
         }
 
-
-        private string _timeSpent;
-
-        public string TimeSpent
+        private int _timeSpent;
+        public int TimeSpent
         {
             get => _timeSpent;
             set
@@ -424,9 +485,7 @@ namespace IT_Time_Tracker
             }
         }
 
-
         private string _date;
-
         public string Date
         {
             get => _date;
@@ -446,9 +505,9 @@ namespace IT_Time_Tracker
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
     }
-        public class Data
+
+    public class Data
     {
         public List<Record> Records { get; set; }
     }
