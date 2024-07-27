@@ -177,7 +177,7 @@
                     <ImageBrush/>
                 </Label.Background>
             </Label>
-            <TextBox x:Name="txb_ReferenceNumberInput" HorizontalAlignment="Left" Margin="54,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="87" Background="White"/>
+            <TextBox x:Name="txb_ReferenceNumberInput" HorizontalAlignment="Left" Margin="54,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="87" Background="White" PreviewTextInput="NumericTextBox_PreviewTextInput" DataObject.Pasting="NumericTextBox_Pasting"  />
             <Label x:Name="lbl_ReferenceNumber_Title" Content="Add a Reference ID number." HorizontalAlignment="Left" Margin="40,108,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="114" FontWeight="Bold" FontSize="8" Foreground="White">
                 <Label.Background>
                     <ImageBrush/>
@@ -193,7 +193,7 @@
                     <ImageBrush/>
                 </Label.Background>
             </Label>
-            <TextBox x:Name="txb_TimeInput" HorizontalAlignment="Left" Margin="177,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="87" Background="White"/>
+            <TextBox x:Name="txb_TimeInput" HorizontalAlignment="Left" Margin="177,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="87" Background="White" PreviewTextInput="NumericTextBox_PreviewTextInput" DataObject.Pasting="NumericTextBox_Pasting" />
             <Label x:Name="lbl_ReferenceNumber_Title_Copy1" Content="Add time in minutes." HorizontalAlignment="Left" Margin="177,108,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="87" FontWeight="Bold" FontSize="8" Foreground="White">
                 <Label.Background>
                     <ImageBrush/>
@@ -222,7 +222,7 @@
                 </Button.Background>
             </Button>
             <Rectangle x:Name="DragRegion" Fill="Transparent" 
-                       VerticalAlignment="Top" Height="47" MouseLeftButtonDown="DragRegion_MouseLeftButtonDown" Margin="0,0,72,0"/>
+                       VerticalAlignment="Top" Height="69" MouseLeftButtonDown="DragRegion_MouseLeftButtonDown" Margin="0,-6,10,0"/>
 
             <Button x:Name="CloseButton" HorizontalAlignment="Right" 
                     VerticalAlignment="Top" Width="20" Height="20" Click="CloseButton_Click" Foreground="#FFFF0202" BorderThickness="0" Margin="0,17,16,0" Content="X" FontWeight="Bold" FontSize="18" Padding="1,-3,1,1">

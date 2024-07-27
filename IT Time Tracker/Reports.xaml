@@ -54,9 +54,9 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <TextBox x:Name="txb_SearchRef" HorizontalAlignment="Left" Margin="67,122,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" RenderTransformOrigin="0.208,-0.668"/>
-            <TextBox x:Name="txb_SearchDateTo" HorizontalAlignment="Left" Margin="222,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" RenderTransformOrigin="0.208,-0.668"/>
-            <TextBox x:Name="txb_SearchDateFrom" HorizontalAlignment="Left" Margin="222,122,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" RenderTransformOrigin="0.208,-0.668"/>
+            <TextBox x:Name="txb_SearchRef" HorizontalAlignment="Left" Margin="67,122,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" RenderTransformOrigin="0.208,-0.668" PreviewTextInput="NumericTextBox_PreviewTextInput" DataObject.Pasting="NumericTextBox_Pasting"  />
+            <TextBox x:Name="txb_SearchDateTo" HorizontalAlignment="Left" Margin="222,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" RenderTransformOrigin="0.208,-0.668" PreviewTextInput="NumericTextBox_PreviewTextInput" DataObject.Pasting="NumericTextBox_Pasting"  />
+            <TextBox x:Name="txb_SearchDateFrom" HorizontalAlignment="Left" Margin="222,122,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" RenderTransformOrigin="0.208,-0.668" PreviewTextInput="NumericTextBox_PreviewTextInput" DataObject.Pasting="NumericTextBox_Pasting"  />
             <Label x:Name="lbl_SerchDateTo_Title_Copy1" Content="To:" HorizontalAlignment="Left" Margin="187,150,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="30" FontWeight="Bold" FontSize="11" Background="{x:Null}" Foreground="White"/>
             <Label x:Name="lbl_SerchDateFrom_Title_Copy" Content="From:" HorizontalAlignment="Left" Margin="174,120,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="43" FontWeight="Bold" FontSize="11" Background="{x:Null}" Foreground="White"/>
             <Rectangle x:Name="DragRegion" Fill="Transparent" 

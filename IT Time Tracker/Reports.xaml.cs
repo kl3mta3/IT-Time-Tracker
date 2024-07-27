@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -121,7 +122,7 @@ namespace IT_Time_Tracker
             {
                 return result;
             }
-            return 0; // Return 0 if parsing fails
+            return 0; 
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
@@ -177,9 +178,35 @@ namespace IT_Time_Tracker
 
 
 
+        private void NumericTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !IsTextNumeric(e.Text);
+        }
 
+        private void NumericTextBox_Pasting(object sender, DataObjectPastingEventArgs e)
+        {
+            if (e.DataObject.GetDataPresent(typeof(string)))
+            {
+                string text = (string)e.DataObject.GetData(typeof(string));
+                if (!IsTextNumeric(text))
+                {
+                    e.CancelCommand();
+                }
+            }
+            else
+            {
+                e.CancelCommand();
+            }
+        }
 
-
-
+        private static bool IsTextNumeric(string text)
+        {
+            Regex regex = new Regex("[^0-9]+"); 
+            return !regex.IsMatch(text);
+        }
     }
+
+
+
 }
+
