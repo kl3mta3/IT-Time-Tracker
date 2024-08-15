@@ -201,8 +201,10 @@ namespace IT_Time_Tracker
 
         private static bool IsTextNumeric(string text)
         {
-            Regex regex = new Regex("[^0-9]+"); 
-            return !regex.IsMatch(text);
+            //Regex regex = new Regex("[^0-9]+"); 
+            //return !regex.IsMatch(text);
+
+            return text.All(c => char.IsDigit(c) || c == '-');
         }
     }
 
